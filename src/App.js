@@ -5,10 +5,14 @@ import AddPost from "./components/pages/AddPost/AddPost";
 import EditPost from "./components/pages/EditPost/EditPost";
 import About from "./components/pages/About/About";
 import NoMatch from "./components/pages/NoMatch/NoMatch";
+import Header from "./components/views/Header/Header";
+import Footer from "./components/views/Footer/Footer";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <div>
+    <Container>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/post/:id" element={<Post />} />
@@ -17,7 +21,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
-    </div>
+      <Footer />
+    </Container>
   );
 }
 
