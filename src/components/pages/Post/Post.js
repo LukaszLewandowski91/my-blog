@@ -12,9 +12,24 @@ const Post = () => {
   if (!postData) return <Navigate to="/" />;
   return (
     <Container>
-      <Row>
-        <Col>{postData.title}</Col>
-        <Col className={styles.containerFlex}>
+      <Row className={styles.containerFlex}>
+        <Col>
+          <h1 className={styles.title}>{postData.title}</h1>
+          <div className={styles.colData}>
+            <p className={styles.p}>
+              Author: <span className={styles.span}>{postData.author}</span>
+            </p>
+            <p className={styles.p}>
+              Published:{" "}
+              <span className={styles.span}>{postData.publishedDate}</span>
+            </p>
+
+            <div className={styles.content}>
+              <span className={styles.span}>{postData.content}</span>
+            </div>
+          </div>
+        </Col>
+        <Col>
           <Button
             variant="outline-info"
             href={"/post-edit/" + postData.id}
