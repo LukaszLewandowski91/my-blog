@@ -37,6 +37,7 @@ const AddPostForm = () => {
             value={title}
             className="mb-3"
             placeholder="Enter Title"
+            required
             onChange={(e) => setTitle(e.target.value)}
           />
           <Form.Label>Author</Form.Label>
@@ -44,6 +45,7 @@ const AddPostForm = () => {
             value={author}
             className="mb-3"
             placeholder="Enter Author"
+            required
             onChange={(e) => setAuthor(e.target.value)}
           />
           <Form.Label>Published</Form.Label>
@@ -51,6 +53,7 @@ const AddPostForm = () => {
             value={publishedDate}
             className="mb-3"
             placeholder="Enter date DD-MM-YYYY"
+            required
             onChange={(e) => setPublishedDate(e.target.value)}
           />
           <Form.Label>Short description</Form.Label>
@@ -64,6 +67,7 @@ const AddPostForm = () => {
               as="textarea"
               className={styles.shortDescription}
               placeholder="Leave a comment here"
+              required
               style={{ height: "120px" }}
               onChange={(e) => setShortDescription(e.target.value)}
             />
@@ -78,6 +82,7 @@ const AddPostForm = () => {
               as="textarea"
               className={styles.mainContent}
               placeholder="Leave a comment here"
+              required
               style={{ height: "320px" }}
               onChange={(e) => setContent(e.target.value)}
             />
