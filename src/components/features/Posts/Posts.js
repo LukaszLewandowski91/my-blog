@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { getAllPosts } from "../../../redux/postsRedux";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import styles from "./Posts.module.scss";
 
 const Posts = () => {
@@ -21,9 +22,9 @@ const Posts = () => {
                   <span className={styles.span}>{post.publishedDate}</span>
                 </Card.Text>
                 <Card.Text>{post.shortDescription}</Card.Text>
-                <Button variant="primary" href={"/post/" + post.id}>
-                  Read more
-                </Button>
+                <Link to={"/post/" + post.id}>
+                  <Button variant="primary">Read more</Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
