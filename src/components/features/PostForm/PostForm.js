@@ -9,11 +9,10 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [shortDescription, setShortDescription] = useState(
     props.shortDescription || ""
   );
-  const [content, setContent] = useState(props.content || "");
 
+  const [content, setContent] = useState(props.content || "");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(action);
     action({ title, author, publishedDate, shortDescription, content });
   };
 
