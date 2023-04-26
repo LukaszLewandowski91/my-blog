@@ -3,6 +3,8 @@ import { useState } from "react";
 import styles from "./PostForm.module.scss";
 import ReactQuill from "react-quill";
 import DatePicker from "react-datepicker";
+import { registerLocale } from "react-datepicker";
+import pl from "date-fns/locale/pl";
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || "");
@@ -11,7 +13,7 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [shortDescription, setShortDescription] = useState(
     props.shortDescription || ""
   );
-
+  registerLocale("pl", pl);
   const [content, setContent] = useState(props.content || "");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,14 +44,8 @@ const PostForm = ({ action, actionText, ...props }) => {
           <DatePicker
             selected={publishedDate}
             onChange={(date) => setPublishedDate(date)}
+            locale="pl"
           />
-          {/* <Form.Control
-            value={publishedDate}
-            className="mb-3"
-            placeholder="Enter date DD-MM-YYYY"
-            required
-            onChange={(e) => setPublishedDate(e.target.value)}
-          /> */}
           <Form.Label>Short description</Form.Label>
           <FloatingLabel
             controlId="floatingTextarea"
