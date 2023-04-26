@@ -1,6 +1,8 @@
 import { Form, FloatingLabel, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import styles from "./PostForm.module.scss";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || "");
@@ -60,21 +62,7 @@ const PostForm = ({ action, actionText, ...props }) => {
               onChange={(e) => setShortDescription(e.target.value)}
             />
           </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingTextarea2"
-            label="Leave a comment here"
-            className="mb-3"
-          >
-            <Form.Control
-              value={content}
-              as="textarea"
-              className={styles.mainContent}
-              placeholder="Leave a comment here"
-              required
-              style={{ height: "320px" }}
-              onChange={(e) => setContent(e.target.value)}
-            />
-          </FloatingLabel>
+          <ReactQuill theme="snow" value={content} onChange={setContent} />
         </Form.Group>
       </Row>
       <Button variant="primary" type="submit">

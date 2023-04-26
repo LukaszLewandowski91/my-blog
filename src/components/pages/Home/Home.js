@@ -2,6 +2,7 @@ import { Container, Button } from "react-bootstrap";
 import Posts from "../../features/Posts/Posts";
 import styles from "./Home.module.scss";
 import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <Container>
