@@ -3,7 +3,7 @@ import { getAllPosts } from "../../../redux/postsRedux";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./Posts.module.scss";
-
+import dateToStr from "../../../utils/dateToStr";
 const Posts = () => {
   const posts = useSelector(getAllPosts());
   return (
@@ -19,7 +19,10 @@ const Posts = () => {
                 </Card.Text>
                 <Card.Text className={styles.p}>
                   Published:{" "}
-                  <span className={styles.span}>{post.publishedDate}</span>
+                  {/* <span className={styles.span}>{post.publishedDate}</span> */}
+                  <span className={styles.span}>
+                    {dateToStr(post.publishedDate)}
+                  </span>
                 </Card.Text>
                 <Card.Text>{post.shortDescription}</Card.Text>
                 <Link to={"/post/" + post.id}>

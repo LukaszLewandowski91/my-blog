@@ -2,7 +2,7 @@ import { Form, FloatingLabel, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import styles from "./PostForm.module.scss";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import DatePicker from "react-datepicker";
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || "");
@@ -39,13 +39,17 @@ const PostForm = ({ action, actionText, ...props }) => {
             onChange={(e) => setAuthor(e.target.value)}
           />
           <Form.Label>Published</Form.Label>
-          <Form.Control
+          <DatePicker
+            selected={publishedDate}
+            onChange={(date) => setPublishedDate(date)}
+          />
+          {/* <Form.Control
             value={publishedDate}
             className="mb-3"
             placeholder="Enter date DD-MM-YYYY"
             required
             onChange={(e) => setPublishedDate(e.target.value)}
-          />
+          /> */}
           <Form.Label>Short description</Form.Label>
           <FloatingLabel
             controlId="floatingTextarea"
@@ -62,6 +66,7 @@ const PostForm = ({ action, actionText, ...props }) => {
               onChange={(e) => setShortDescription(e.target.value)}
             />
           </FloatingLabel>
+          <Form.Label>Main content</Form.Label>
           <ReactQuill theme="snow" value={content} onChange={setContent} />
         </Form.Group>
       </Row>

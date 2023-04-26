@@ -7,7 +7,7 @@ import { useParams } from "react-router";
 import { useState } from "react";
 import { removePost } from "../../../redux/postsRedux";
 import { Link } from "react-router-dom";
-
+import dateToStr from "../../../utils/dateToStr";
 const Post = () => {
   const { postId } = useParams();
   const postData = useSelector((state) => getPostById(state, postId));
@@ -35,11 +35,14 @@ const Post = () => {
             </p>
             <p className={styles.p}>
               Published:{" "}
-              <span className={styles.span}>{postData.publishedDate}</span>
+              {/* <span className={styles.span}>{postData.publishedDate}</span> */}
+              <span className={styles.span}>
+                {dateToStr(postData.publishedDate)}
+              </span>
             </p>
 
             <div className={styles.content}>
-              <span className={styles.span}>{postData.content}</span>
+              <p dangerouslySetInnerHTML={{ __html: postData.content }} />
             </div>
           </div>
         </Col>
