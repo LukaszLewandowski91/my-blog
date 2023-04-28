@@ -14,10 +14,6 @@ const Post = () => {
   const { postId } = useParams();
   const postData = useSelector((state) => getPostById(state, postId));
 
-  // const categoryData = useSelector((state) =>
-  //   getCategoryById(state, postData.categoryId)
-  // );
-
   const categoryData = useSelector(getAllCategories());
 
   const [show, setShow] = useState(false);
