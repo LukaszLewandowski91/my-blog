@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-
 import { addPost } from "../../../redux/postsRedux";
 import { useNavigate } from "react-router-dom";
 import PostForm from "../PostForm/PostForm";

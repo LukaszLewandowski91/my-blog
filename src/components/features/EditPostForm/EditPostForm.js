@@ -5,6 +5,7 @@ import { editPost } from "../../../redux/postsRedux";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getPostById } from "../../../redux/postsRedux";
+
 const EditPostForm = () => {
   const { postId } = useParams();
   const dispatch = useDispatch();
