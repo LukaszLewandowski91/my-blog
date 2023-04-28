@@ -2,8 +2,10 @@ export const getAllCategories = () => {
   return (state) => state.categories;
 };
 
-export const getCategoryById = ({ categories }, categoryId) =>
-  categories.find((category) => category.id === categoryId);
+export const getCategoryById = ({ categories }, categoryId) => {
+  const category = categories.find((category) => category.id === categoryId);
+  return category.title;
+};
 
 const categoriesReducer = (statePart = [], action) => {
   switch (action.type) {
