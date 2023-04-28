@@ -96,20 +96,15 @@ const PostForm = ({ action, actionText, ...props }) => {
           <Form.Label>Category</Form.Label>
           <Form.Select
             className="mb-3"
+            defaultValue={categoryId}
             onChange={(e) => setCategoryId(e.target.value)}
           >
             <option>Select category...</option>
-            {categoryData.map((category) =>
-              category.id === categoryId ? (
-                <option key={category.id} value={category.id} selected>
-                  {category.title}{" "}
-                </option>
-              ) : (
-                <option key={category.id} value={category.id}>
-                  {category.title}
-                </option>
-              )
-            )}
+            {categoryData.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.title}
+              </option>
+            ))}
           </Form.Select>
           {categoryError && (
             <small className="d-block form-text text-danger mt-2">
