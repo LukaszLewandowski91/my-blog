@@ -6,11 +6,16 @@ import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import pl from "date-fns/locale/pl";
 import { useForm } from "react-hook-form";
+import { getAllCategories } from "../../../redux/categoriesRedux";
+import { useSelector } from "react-redux";
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [contentError, setContentError] = useState(false);
   const [dateError, setDateError] = useState(false);
+  const [categoryError, setCategoryError] = useState(false);
   registerLocale("pl", pl);
+
+  const categoryData = useSelector(getAllCategories());
 
   const {
     register,
@@ -24,14 +29,23 @@ const PostForm = ({ action, actionText, ...props }) => {
   const [shortDescription, setShortDescription] = useState(
     props.shortDescription || ""
   );
+  const [categoryId, setCategoryId] = useState(props.categoryId || "");
 
   const [content, setContent] = useState(props.content || "");
 
   const handleSubmit = () => {
     setContentError(!content);
     setDateError(!publishedDate);
-    if (content && publishedDate) {
-      action({ title, author, publishedDate, shortDescription, content });
+    setCategoryError(!categoryId);
+    if (content && publishedDate && categoryId) {
+      action({
+        title,
+        author,
+        publishedDate,
+        shortDescription,
+        content,
+        categoryId,
+      });
     }
   };
 
@@ -75,6 +89,29 @@ const PostForm = ({ action, actionText, ...props }) => {
             className="mb-3"
           />
           {dateError && (
+            <small className="d-block form-text text-danger mt-2">
+              This field is required
+            </small>
+          )}
+          <Form.Label>Category</Form.Label>
+          <Form.Select
+            className="mb-3"
+            onChange={(e) => setCategoryId(e.target.value)}
+          >
+            <option>Select category...</option>
+            {categoryData.map((category) =>
+              category.id === categoryId ? (
+                <option key={category.id} value={category.id} selected>
+                  {category.title}{" "}
+                </option>
+              ) : (
+                <option key={category.id} value={category.id}>
+                  {category.title}
+                </option>
+              )
+            )}
+          </Form.Select>
+          {categoryError && (
             <small className="d-block form-text text-danger mt-2">
               This field is required
             </small>

@@ -8,9 +8,18 @@ import { useState } from "react";
 import { removePost } from "../../../redux/postsRedux";
 import { Link } from "react-router-dom";
 import dateToStr from "../../../utils/dateToStr";
+import { getAllCategories } from "../../../redux/categoriesRedux";
+
 const Post = () => {
   const { postId } = useParams();
   const postData = useSelector((state) => getPostById(state, postId));
+
+  // const categoryData = useSelector((state) =>
+  //   getCategoryById(state, postData.categoryId)
+  // );
+
+  const categoryData = useSelector(getAllCategories());
+
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
@@ -22,7 +31,6 @@ const Post = () => {
     handleClose();
     <Navigate to="/" />;
   };
-
   if (!postData) return <Navigate to="/" />;
   return (
     <Container>
@@ -35,12 +43,20 @@ const Post = () => {
             </p>
             <p className={styles.p}>
               Published:{" "}
-              {/* <span className={styles.span}>{postData.publishedDate}</span> */}
               <span className={styles.span}>
                 {dateToStr(postData.publishedDate)}
               </span>
             </p>
-
+            <p className={styles.p}>
+              Category:{" "}
+              {categoryData.map((category) =>
+                category.id === postData.categoryId ? (
+                  <span key={category.id} className={styles.span}>
+                    {category.title}
+                  </span>
+                ) : undefined
+              )}
+            </p>
             <div className={styles.content}>
               <p dangerouslySetInnerHTML={{ __html: postData.content }} />
             </div>

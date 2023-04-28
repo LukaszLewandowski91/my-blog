@@ -4,8 +4,11 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./Posts.module.scss";
 import dateToStr from "../../../utils/dateToStr";
+import { getAllCategories } from "../../../redux/categoriesRedux";
 const Posts = () => {
   const posts = useSelector(getAllPosts());
+  const categoryData = useSelector(getAllCategories());
+
   return (
     <Container>
       <Row>
@@ -19,10 +22,19 @@ const Posts = () => {
                 </Card.Text>
                 <Card.Text className={styles.p}>
                   Published:{" "}
-                  {/* <span className={styles.span}>{post.publishedDate}</span> */}
                   <span className={styles.span}>
                     {dateToStr(post.publishedDate)}
                   </span>
+                </Card.Text>
+                <Card.Text className={styles.p}>
+                  Category:{" "}
+                  {categoryData.map((category) =>
+                    category.id === post.categoryId ? (
+                      <span key={category.id} className={styles.span}>
+                        {category.title}
+                      </span>
+                    ) : undefined
+                  )}
                 </Card.Text>
                 <Card.Text>{post.shortDescription}</Card.Text>
                 <Link to={"/post/" + post.id}>

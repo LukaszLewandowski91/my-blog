@@ -7,6 +7,7 @@ const initialState = {
       content: "Main content of the article",
       publishedDate: new Date("04-18-2023"),
       author: "John Doe",
+      categoryId: "1",
     },
     {
       id: "2",
@@ -15,6 +16,7 @@ const initialState = {
       content: "Główna treść",
       publishedDate: new Date("04-21-2023"),
       author: "Noe",
+      categoryId: "1",
     },
     {
       id: "3",
@@ -23,6 +25,7 @@ const initialState = {
       content: "The best game of 2022",
       publishedDate: new Date("04-01-2023"),
       author: "Joel",
+      categoryId: "3",
     },
     {
       id: "4",
@@ -31,6 +34,21 @@ const initialState = {
       content: "GTA VI will be released in December 2023",
       publishedDate: new Date("04-26-2023"),
       author: "Rockstar",
+      categoryId: "2",
+    },
+  ],
+  categories: [
+    {
+      id: "1",
+      title: "Sport",
+    },
+    {
+      id: "2",
+      title: "News",
+    },
+    {
+      id: "3",
+      title: "Movies",
     },
   ],
 };
